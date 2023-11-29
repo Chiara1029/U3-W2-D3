@@ -11,7 +11,7 @@ export class ActivePostsComponent implements OnInit {
   posts: Post[] = [];
 
   constructor(private postSrv: PostsService) {
-    this.postSrv.recuperaPosts().then((posts) => {
+    this.postSrv.getPosts().then((posts) => {
       this.posts = posts;
       console.log(this.posts);
     });

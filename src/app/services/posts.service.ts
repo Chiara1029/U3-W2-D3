@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class PostsService {
   constructor() {}
 
-  async recuperaPosts() {
+  async getPosts() {
     return await (await fetch('../../assets/db.json')).json();
   }
 }
