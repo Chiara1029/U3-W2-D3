@@ -8,14 +8,17 @@ import { PostsService } from 'src/app/services/posts.service';
   styleUrls: ['./active-posts.component.scss'],
 })
 export class ActivePostsComponent implements OnInit {
-  posts: Post[] = [];
+  posts!: Post[];
 
-  constructor(private postSrv: PostsService) {
-    this.postSrv.getPosts().then((posts) => {
-      this.posts = posts;
-      console.log(this.posts);
-    });
+  constructor(private postSrv: PostsService) {}
+
+  async ngOnInit() {
+    const posts = await this.postSrv.recuperaPosts();
+    this.posts = posts;
   }
 
-  ngOnInit(): void {}
+  onInactivePost(id: number, i: number) {
+    this.postSrv.updatePost({ active: false }, id);
+    this.posts.splice(i, 1);
+  }
 }
